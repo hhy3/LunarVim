@@ -45,10 +45,13 @@ function plugin_loader.init(opts)
   if not utils.is_directory(install_path) then
     print "Initializing first time setup"
     print "Installing packer"
-    print(vim.fn.system { "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
+    print "FUCK"
+    print(vim.fn.system { "git", "clone", "--depth", "1", "git@github.com:hhy3/packer.nvim.git", install_path })
+    print "OK"
     vim.cmd "packadd packer.nvim"
-  end
 
+  end
+  print "???"
   local status_ok, packer = pcall(require, "packer")
   if status_ok then
     packer.on_complete = vim.schedule_wrap(function()
@@ -56,6 +59,7 @@ function plugin_loader.init(opts)
     end)
     packer.init(init_opts)
   end
+  print "DONE"
 end
 
 -- packer expects a space separated list
